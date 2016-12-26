@@ -28,6 +28,8 @@
 
 var deck, hand, discards, deck2, hand2, discards2;
 var counter = 0;
+var deal_counter = 0;
+var deal_counter2 = 0;
 
 window.onload = init;
 
@@ -44,10 +46,8 @@ function init() {
   deck.makeDeck(1);
   display();
 
-  deck2.makeDeck(2);
+  deck2.makeDeck(1);
   display();
-
-  console.log(deck2);
 }
 
 function shuffle() {
@@ -72,14 +72,18 @@ function deal() {
 
   if (deck == null) return;
 
-  if (deck.cardCount() < 7)
+  if (deck.cardCount() < 1)
     alert("Not enough cards.");
-  else {
-    discard();
-    for (i = 0; i < 7; i++)
+  else if(deal_counter > 0) {
+    for (i = 0; i < 1; i++)
       hand.addCard(deck.deal());
   }
-
+  else {
+    discard();
+    for (i = 0; i < 3; i++)
+      hand.addCard(deck.deal());
+  }
+  deal_counter++;
   display();
 }
 
@@ -89,14 +93,18 @@ function deal2() {
 
   if (deck2 == null) return;
 
-  if (deck2.cardCount() < 7)
+  if (deck2.cardCount() < 1)
     alert("Not enough cards.");
-  else {
-    discard2();
-    for (i = 0; i < 7; i++)
+  else if(deal_counter2 > 0) {
+    for (i = 0; i < 1; i++)
       hand2.addCard(deck2.deal());
   }
-
+  else {
+    discard2();
+    for (i = 0; i < 3; i++)
+      hand2.addCard(deck2.deal());
+  }
+  deal_counter2++;
   display();
 }
 
@@ -125,6 +133,7 @@ function reset() {
 
   discards.combine(hand);
   deck.combine(discards);
+  deal_counter = 0;
   display();
 }
 
@@ -136,6 +145,7 @@ function reset2() {
 
   discards2.combine(hand2);
   deck2.combine(discards2);
+  deal_counter2 = 0;
   display();
 }
 
