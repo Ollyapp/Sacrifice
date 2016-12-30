@@ -188,6 +188,15 @@ function display() {
     top  += 0.25;
   }
 
+  for (i = 0; i < hand.cardCount(); i++) {
+    node = hand.cards[0].createNode();
+    document.getElementById("hq").appendChild(node);
+    node = hand.cards[1].createNode();
+    document.getElementById("pillar1").appendChild(node);
+    node = hand.cards[2].createNode();
+    document.getElementById("pillar2").appendChild(node);
+  }
+
   left = 0;
   top  = 0;
   el = document.getElementById("discards");
@@ -239,6 +248,15 @@ function display() {
     top  += 0.25;
   }
 
+  for (i = 0; i < hand2.cardCount(); i++) {
+    node = hand2.cards[0].createNode();
+    document.getElementById("hq-2").appendChild(node);
+    node = hand2.cards[1].createNode();
+    document.getElementById("pillar1-2").appendChild(node);
+    node = hand2.cards[2].createNode();
+    document.getElementById("pillar2-2").appendChild(node);
+  }
+
   left = 0;
   top  = 0;
   el = document.getElementById("discards2");
@@ -253,6 +271,8 @@ function display() {
     left += 0.10;
     top  += 0.05;
   }
+
+
 }
 
 //]]></script>
@@ -301,6 +321,29 @@ code.</p>
 <div id="deck2"     class="cardArea"></div>
 <div id="hand2"     class="cardArea" style="width:10em;"></div>
 <div id="discards2" class="cardArea"></div>
+
+<div id="table">
+  <table>
+    <tr>
+      <td></td><td></td><td id="hq"></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td></td><td id="pillar1"></td><td></td><td id="pillar2"></td><td></td>
+    </tr>
+    <tr>
+      <td id="left"></td><td></td><td id="center"></td><td></td><td id="right"></td>
+    </tr>
+    <tr>
+      <td id="left-2"></td><td></td><td id="center-2"></td><td></td><td id="right-2"></td>
+    </tr>
+    <tr>
+      <td></td><td id="pillar1-2"></td><td></td><td id="pillar2-2"></td><td></td>
+    </tr>
+    <tr>
+      <td></td><td></td><td id="hq-2"></td><td></td><td></td>
+    </tr>
+  </table>
+</div>
 
 </body>
 </html>

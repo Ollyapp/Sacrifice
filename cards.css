@@ -71,3 +71,15 @@
 .spotC4 { position: absolute; left: 2.50em; top: 2.5em; }
 .spotC5 { position: absolute; left: 2.50em; top: 3.5em; }
 
+#table {
+  display: block;
+  float: left;
+}
+
+table tr td {
+    font-size: 20pt;
+    float: left;
+    position: relative;
+    width: 4.50em;
+    height: 5.00em;
+}
