@@ -108,6 +108,22 @@ function deal2() {
   display();
 }
 
+function deal5(clicked_id) {
+  hand.addCard(deck.deal());
+  
+  el = document.getElementById(clicked_id);
+  while (el.firstChild != null)
+    el.removeChild(el.firstChild);
+  for (i = 0; i < hand.cardCount(); i++) {
+    node = hand.cards[i].createNode();
+    node.style.left = left + "em";
+    node.style.top  = top  + "em";
+    el.appendChild(node);
+    left += 1.00;
+    top  += 0.25;
+  }
+}
+
 
 function discard() {
 
@@ -150,7 +166,7 @@ function reset2() {
 }
 
 
-function display() {
+function display(clicked_id) {
 
   var el, top, left;
   var n;
@@ -211,8 +227,6 @@ function display() {
     left += 0.10;
     top  += 0.05;
   }
-
-
 
 
 
@@ -325,22 +339,22 @@ code.</p>
 <div id="table">
   <table>
     <tr>
-      <td></td><td></td><td id="hq"></td><td></td><td></td>
+      <td></td><td></td><td id="hq" onclick="deal5(this.id)"></td><td></td><td></td>
     </tr>
     <tr>
-      <td></td><td id="pillar1"></td><td></td><td id="pillar2"></td><td></td>
+      <td></td><td id="pillar1" onclick="deal5(this.id)"></td><td></td><td id="pillar2" onclick="deal5(this.id)"></td><td></td>
     </tr>
     <tr>
-      <td id="left"></td><td></td><td id="center"></td><td></td><td id="right"></td>
+      <td id="left" onclick="deal5(this.id)"></td><td></td><td id="center" onclick="deal5(this.id)"></td><td></td><td id="right" onclick="deal5(this.id)"></td>
     </tr>
     <tr>
-      <td id="left-2"></td><td></td><td id="center-2"></td><td></td><td id="right-2"></td>
+      <td id="left-2" onclick="deal5(this.id)"></td><td></td><td id="center-2" onclick="deal5(this.id)"></td><td></td><td id="right-2" onclick="deal5(this.id)"></td>
     </tr>
     <tr>
-      <td></td><td id="pillar1-2"></td><td></td><td id="pillar2-2"></td><td></td>
+      <td></td><td id="pillar1-2" onclick="deal5(this.id)"></td><td></td><td id="pillar2-2" onclick="deal5(this.id)"></td><td></td>
     </tr>
     <tr>
-      <td></td><td></td><td id="hq-2"></td><td></td><td></td>
+      <td></td><td></td><td id="hq-2" onclick="deal5(this.id)"></td><td></td><td></td>
     </tr>
   </table>
 </div>
