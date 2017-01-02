@@ -30,6 +30,7 @@ var deck, hand, discards, deck2, hand2, discards2;
 var counter = 0;
 var deal_counter = 0;
 var deal_counter2 = 0;
+var deal_counter5 = 0;
 
 window.onload = init;
 
@@ -109,19 +110,35 @@ function deal2() {
 }
 
 function deal5(clicked_id) {
-  hand.addCard(deck.deal());
   
+  var hand_number;
+  var deck_number;
+
+  if(deal_counter5 % 2 == 1) {
+    hand_number = hand;
+    deck_number = deck;
+  }
+  else {
+    hand_number = hand2;
+    deck_number = deck2;
+  }
+
+  hand_number.addCard(deck_number.deal());
+
   el = document.getElementById(clicked_id);
   while (el.firstChild != null)
     el.removeChild(el.firstChild);
-  for (i = 0; i < hand.cardCount(); i++) {
-    node = hand.cards[i].createNode();
+  for (i = 0; i < hand_number.cardCount(); i++) {
+    node = hand_number.cards[i].createNode();
     node.style.left = left + "em";
     node.style.top  = top  + "em";
     el.appendChild(node);
     left += 1.00;
     top  += 0.25;
   }
+  deal_counter5++;
+  console.log(hand_number);
+  console.log(deal_counter5);
 }
 
 
