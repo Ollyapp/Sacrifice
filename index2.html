@@ -564,6 +564,12 @@ function highlight_selectible2() {
 
   var highlight = "border: 3px solid red";
 
+  // Pillar1-2
+  if(hq2.lastChild.innerHTML.indexOf('class="front">') != -1  &&  pillar1_2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+    pillar1_2.style = highlight;
+  else
+    pillar1_2.style = "";
+
   // Pillar2-2
   if(hq2.lastChild.innerHTML.indexOf('class="front">') != -1  &&  pillar2_2.lastChild.innerHTML.indexOf('class="front">') == -1) 
     pillar2_2.style = highlight;
