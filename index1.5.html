@@ -161,6 +161,7 @@ function deal6(clicked_id) {
   node = hand_number.cards[hand_number.cardCount()-1].createNode();
   node.style.left = left + "em";
   node.style.top  = top  + "em";
+  console.log(get_card_value(hand_number.cards[hand_number.cardCount()-1].rank));
     el.insertBefore(node, el.firstChild);
     el.appendChild(node);
   left += 1.00;
@@ -409,68 +410,69 @@ function highlight_selectible() {
 
   var highlight = "border: 3px solid green";
 
+  console.log(center.innerHTML);
   // Pillar2 Id
-  if(hq.lastChild.innerHTML.indexOf("front red") != -1 &&  pillar2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(hq.innerHTML.indexOf("front red") != -1 &&  pillar2.innerHTML.indexOf("front red") == -1) 
     pillar2.style = highlight;
   else
     pillar2.style = "";
 
   // Pillar1 Id
-  if(hq.lastChild.innerHTML.indexOf("front red") != -1 &&  pillar1.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(hq.innerHTML.indexOf("front red") != -1 &&  pillar1.innerHTML.indexOf("front red") == -1) 
     pillar1.style = highlight;
   else
     pillar1.style = "";
 
   // Left Id
-  if(pillar1.lastChild.innerHTML.indexOf("front red") != -1 &&  left.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(pillar1.innerHTML.indexOf("front red") != -1 &&  left.innerHTML.indexOf("front red") == -1) 
     left.style = highlight;
   else
     left.style = "";
 
   // Center Id
-  if((pillar1.lastChild.innerHTML.indexOf("front red") != -1 || pillar2.lastChild.innerHTML.indexOf("front red") != -1) && center.lastChild.innerHTML.indexOf("front red") == -1)
+  if((pillar1.innerHTML.indexOf("front red") != -1 || pillar2.innerHTML.indexOf("front red") != -1) && center.innerHTML.indexOf("front red") == -1)
     center.style = highlight;
   else
     center.style = "";
 
   // Right Id
-  if(pillar2.lastChild.innerHTML.indexOf("front red") != -1 &&  right.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(pillar2.innerHTML.indexOf("front red") != -1 &&  right.innerHTML.indexOf("front red") == -1) 
     right.style = highlight;
   else
     right.style = "";
 
   // Left 2 Id
-  if(left.lastChild.innerHTML.indexOf("front red") != -1 &&  left2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(left.innerHTML.indexOf("front red") != -1 &&  left2.innerHTML.indexOf("front red") == -1) 
     left2.style = highlight;
   else
     left2.style = "";
 
   // Center 2 Id
-  if(center.lastChild.innerHTML.indexOf("front red") != -1 &&  center2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(center.innerHTML.indexOf("front red") != -1 &&  center2.innerHTML.indexOf("front red") == -1) 
     center2.style = highlight;
   else
     center2.style = "";
 
   // Right 2 Id
-  if(right.lastChild.innerHTML.indexOf("front red") != -1 &&  right2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if(right.innerHTML.indexOf("front red") != -1 &&  right2.innerHTML.indexOf("front red") == -1) 
     right2.style = highlight;
   else
     right2.style = "";
 
   // Pillar1-2
-  if((left2.lastChild.innerHTML.indexOf("front red") != -1 || center2.lastChild.innerHTML.indexOf("front red") != -1) &&  pillar1_2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if((left2.innerHTML.indexOf("front red") != -1 || center2.innerHTML.indexOf("front red") != -1) &&  pillar1_2.innerHTML.indexOf("front red") == -1) 
     pillar1_2.style = highlight;
   else
     pillar1_2.style = "";
 
   // Pillar2-2
-  if((center2.lastChild.innerHTML.indexOf("front red") != -1 || right2.lastChild.innerHTML.indexOf("front red") != -1) &&  pillar2_2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if((center2.innerHTML.indexOf("front red") != -1 || right2.innerHTML.indexOf("front red") != -1) &&  pillar2_2.innerHTML.indexOf("front red") == -1) 
     pillar2_2.style = highlight;
   else
     pillar2_2.style = "";
 
   // Hq2
-  if((pillar1_2.lastChild.innerHTML.indexOf("front red") != -1 || pillar2_2.lastChild.innerHTML.indexOf("front red") != -1) &&  hq2.lastChild.innerHTML.indexOf("front red") == -1) 
+  if((pillar1_2.innerHTML.indexOf("front red") != -1 || pillar2_2.innerHTML.indexOf("front red") != -1) &&  hq2.innerHTML.indexOf("front red") == -1) 
     hq2.style = highlight;
   else
     hq2.style = "";
@@ -485,7 +487,9 @@ function process_move() {
     if(document.getElementById("hq").innerHTML.indexOf("front red") != -1 || document.getElementById("hq").getAttribute("style") != "") {
       draw_card(this.id);
       var index_array_length = this.getElementsByClassName("index").length;
+      console.log(this.getElementsByClassName("index"));
       hq_card_array.push(this.getElementsByClassName("index")[index_array_length-1].innerHTML[0]);
+      console.log(hq_card_array);
     }
   }
 
@@ -565,61 +569,61 @@ function highlight_selectible2() {
   var highlight = "border: 3px solid red";
 
   // Pillar2-2
-  if(hq2.lastChild.innerHTML.indexOf('class="front">') != -1  &&  pillar2_2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if(hq2.innerHTML.indexOf('class="front">') != -1  &&  pillar2_2.innerHTML.indexOf('class="front">') == -1) 
     pillar2_2.style = highlight;
   else
     pillar2_2.style = "";
 
   // Left 2 Id
-  if(pillar1_2.lastChild.innerHTML.indexOf('class="front">') != -1 &&  left2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if(pillar1_2.innerHTML.indexOf('class="front">') != -1 &&  left2.innerHTML.indexOf('class="front">') == -1) 
     left2.style = highlight;
   else
     left2.style = "";
 
   // center 2 Id
-  if((pillar1_2.lastChild.innerHTML.indexOf('class="front">') != -1 || pillar2_2.lastChild.innerHTML.indexOf('class="front">') != -1) &&  center2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if((pillar1_2.innerHTML.indexOf('class="front">') != -1 || pillar2_2.innerHTML.indexOf('class="front">') != -1) &&  center2.innerHTML.indexOf('class="front">') == -1) 
     center2.style = highlight;
   else
     center2.style = "";
 
   // Right 2 Id
-  if(pillar2_2.lastChild.innerHTML.indexOf('class="front">') != -1 &&  right2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if(pillar2_2.innerHTML.indexOf('class="front">') != -1 &&  right2.innerHTML.indexOf('class="front">') == -1) 
     right2.style = highlight;
   else
     right2.style = "";
 
   // Left Id
-   if(left2.lastChild.innerHTML.indexOf('class="front">') != -1 &&  left.lastChild.innerHTML.indexOf('class="front">') == -1) 
+   if(left2.innerHTML.indexOf('class="front">') != -1 &&  left.innerHTML.indexOf('class="front">') == -1) 
     left.style = highlight;
   else
     left.style = "";
 
   // Center Id
-   if(center2.lastChild.innerHTML.indexOf('class="front">') != -1 &&  center.lastChild.innerHTML.indexOf('class="front">') == -1) 
+   if(center2.innerHTML.indexOf('class="front">') != -1 &&  center.innerHTML.indexOf('class="front">') == -1) 
     center.style = highlight;
   else
     center.style = "";
 
   // Right Id
-   if(right2.lastChild.innerHTML.indexOf('class="front">') != -1 &&  right.lastChild.innerHTML.indexOf('class="front">') == -1) 
+   if(right2.innerHTML.indexOf('class="front">') != -1 &&  right.innerHTML.indexOf('class="front">') == -1) 
     right.style = highlight;
   else
     right.style = "";
 
   // Pillar1 Id
-  if((left.lastChild.innerHTML.indexOf('class="front">') != -1 || center.lastChild.innerHTML.indexOf('class="front">') != -1) &&  pillar1.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if((left.innerHTML.indexOf('class="front">') != -1 || center.innerHTML.indexOf('class="front">') != -1) &&  pillar1.innerHTML.indexOf('class="front">') == -1) 
     pillar1.style = highlight;
   else
     pillar1.style = "";
 
   // Pillar2 Id
-  if((right.lastChild.innerHTML.indexOf('class="front">') != -1 || center.lastChild.innerHTML.indexOf('class="front">') != -1) &&  pillar2.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if((right.innerHTML.indexOf('class="front">') != -1 || center.innerHTML.indexOf('class="front">') != -1) &&  pillar2.innerHTML.indexOf('class="front">') == -1) 
     pillar2.style = highlight;
   else
     pillar2.style = "";
 
   // hq Id
-  if((pillar1.lastChild.innerHTML.indexOf('class="front">') != -1 || pillar2.lastChild.innerHTML.indexOf('class="front">') != -1) &&  hq.lastChild.innerHTML.indexOf('class="front">') == -1) 
+  if((pillar1.innerHTML.indexOf('class="front">') != -1 || pillar2.innerHTML.indexOf('class="front">') != -1) &&  hq.innerHTML.indexOf('class="front">') == -1) 
     hq.style = highlight;
   else
     hq.style = "";
@@ -701,13 +705,10 @@ function update_loop() {
   if(deal_counter5 % 2 == 1) {
     highlight_selectible();
     process_move();
-    console.log("in green group");
-
   }
   else {
     highlight_selectible2();
     process_move2();
-    console.log("in red group");
   }
 
 }
@@ -741,10 +742,10 @@ setInterval(update_loop, 500);
       <td></td><td id="pillar1"></td><td></td><td id="pillar2"></td><td></td>
     </tr>
     <tr>
-      <td id="left" ><div class="card"></div></td><td></td><td id="center"><div class="card"></div></td><td></td><td id="right"><div class="card"></div></td>
+      <td id="left" ></td><td></td><td id="center"></td><td></td><td id="right"></td>
     </tr>
     <tr>
-      <td id="left-2"><div class="card"></div></td><td></td><td id="center-2"><div class="card"></div></td><td></td><td id="right-2"><div class="card"></div></td>
+      <td id="left-2"></td><td></td><td id="center-2"></td><td></td><td id="right-2"></td>
     </tr>
     <tr>
       <td></td><td id="pillar1-2"></td><td></td><td id="pillar2-2"></td><td></td>
