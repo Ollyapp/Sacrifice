@@ -74,7 +74,7 @@ function deal() {
   if (deck == null) return;
 
   if (deck.cardCount() < 1)
-    alert("Not enough cards.");
+    alert("Not enough cards. You loose");
   else if(deal_counter > 0) {
     for (i = 0; i < 1; i++)
       hand.addCard(deck.deal());
@@ -157,12 +157,23 @@ function deal6(clicked_id) {
 
   el = document.getElementById(clicked_id);
   // while (el.firstChild != null)
-  //   el.removeChild(el.firstChild);
+  //  el.removeChild(el.firstChild);
   node = hand_number.cards[hand_number.cardCount()-1].createNode();
   node.style.left = left + "em";
   node.style.top  = top  + "em";
-    el.insertBefore(node, el.firstChild);
+
+  // Test for value of card and then compare to the top card. If higher append to the end of childnodes, if not append to the beginning.
+  var index_array_length = el.getElementsByClassName("index").length;
+  var top_card = el.getElementsByClassName("index")[index_array_length - 1].innerHTML[0];
+  var drawn_card = hand_number.cards[hand_number.cardCount()-1].rank
+  console.log(hand_number.cards[hand_number.cardCount()-1].rank);
+  console.log(index_array_length);
+  console.log(el.getElementsByClassName("index")[index_array_length - 1].innerHTML[0]);
+  if(get_card_value(top_card) < get_card_value(drawn_card))
     el.appendChild(node);
+  else 
+    el.insertBefore(node, el.firstChild);
+
   left += 1.00;
   top  += 0.25;
 
@@ -339,8 +350,22 @@ function display(clicked_id) {
 //                  MY CODE                     //
 //////////////////////////////////////////////////
 
+// code that allows removal of elements with '.remove()'
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
 function get_card_value(rank) {
   switch(rank) {
+    case "0":
+      return 1;
     case "2":
       return 2;
     case "3":
@@ -476,8 +501,16 @@ function highlight_selectible() {
     hq2.style = "";
 }
 
+// Remove the hardcoded 'work_around' div after card has been dealt
+function remove_blank_divs(element_id) {
+  var el = document.getElementById(element_id);
+  console.log(el.getElementsByClassName("work_around"));
+  el.getElementsByClassName("work_around").remove();
+}
+
 function draw_card(element_id) {
   deal6(element_id);
+  remove_blank_divs(element_id);
 }
 
 function process_move() {
@@ -728,7 +761,7 @@ setInterval(update_loop, 500);
 </head>
 <body>
 
-<p></p>
+<p><a onclick="deal();">Sacrifice</a></p>
 
 <div id="deck"     class="cardArea"></div>
 <div id="hand"     class="cardArea" style="width:10em;"></div>
@@ -737,6 +770,8 @@ setInterval(update_loop, 500);
 <div id="deck2"     class="cardArea"></div>
 <div id="hand2"     class="cardArea" style="width:10em;"></div>
 <div id="discards2" class="cardArea"></div>
+
+
 
 <div id="table">
   <table>
@@ -747,10 +782,10 @@ setInterval(update_loop, 500);
       <td></td><td id="pillar1"></td><td></td><td id="pillar2"></td><td></td>
     </tr>
     <tr>
-      <td id="left" ><div class="card"></div></td><td></td><td id="center"><div class="card"></div></td><td></td><td id="right"><div class="card"></div></td>
+      <td id="left" ><div class="work_around"><div><div class="index">0</div></div></div></td><td></td><td id="center"><div class="work_around"><div><div class="index">0</div></div></div></td><td></td><td id="right"><div class="work_around"><div><div class="index">0</div></div></div></td>
     </tr>
     <tr>
-      <td id="left-2"><div class="card"></div></td><td></td><td id="center-2"><div class="card"></div></td><td></td><td id="right-2"><div class="card"></div></td>
+      <td id="left-2"><div class="work_around"><div><div class="index">0</div></div></div></td><td></td><td id="center-2"><div class="work_around"><div><div class="index">0</div></div></div></td><td></td><td id="right-2"><div class="work_around"><div><div class="index">0</div></div></div></td>
     </tr>
     <tr>
       <td></td><td id="pillar1-2"></td><td></td><td id="pillar2-2"></td><td></td>
