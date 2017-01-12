@@ -74,9 +74,9 @@ function deal() {
   if (deck == null) return;
 
   if (deck.cardCount() < 1)
-    alert("Not enough cards. You loose");
+    alert("Not enough cards. You lose!");
   else if(deal_counter > 0) {
-    for (i = 0; i < 1; i++)
+    for (i = 0; i < 5; i++)
       hand.addCard(deck.deal());
   }
   else {
@@ -137,6 +137,21 @@ function deal5(clicked_id) {
     top  += 0.25;
   }
   deal_counter5++;
+}
+
+function deal1() {
+
+  var i;
+
+  if (deck == null) return;
+
+  if (deck.cardCount() < 1)
+    alert("Not enough cards. You lose!");
+
+  for (i = 0; i < 5; i++)
+    hand.addCard(deck.deal());
+
+  display();
 }
 
 function deal6(clicked_id) {
@@ -251,22 +266,13 @@ function display(clicked_id) {
   el = document.getElementById("hand");
   while (el.firstChild != null)
     el.removeChild(el.firstChild);
-  for (i = 0; i < hand.cardCount(); i++) {
+  for (i = 3; i < hand.cardCount(); i++) {
     node = hand.cards[i].createNode();
     node.style.left = left + "em";
     node.style.top  = top  + "em";
     el.appendChild(node);
     left += 1.00;
     top  += 0.25;
-  }
-
-  for (i = 0; i < hand.cardCount(); i++) {
-    node = hand.cards[0].createNode();
-    document.getElementById("hq").appendChild(node);
-    node = hand.cards[1].createNode();
-    document.getElementById("pillar1").appendChild(node);
-    node = hand.cards[2].createNode();
-    document.getElementById("pillar2").appendChild(node);
   }
 
   left = 0;
@@ -309,22 +315,13 @@ function display(clicked_id) {
   el = document.getElementById("hand2");
   while (el.firstChild != null)
     el.removeChild(el.firstChild);
-  for (i = 0; i < hand2.cardCount(); i++) {
+  for (i = 3; i < hand2.cardCount(); i++) {
     node = hand2.cards[i].createNode();
     node.style.left = left + "em";
     node.style.top  = top  + "em";
     el.appendChild(node);
     left += 1.00;
     top  += 0.25;
-  }
-
-  for (i = 0; i < hand2.cardCount(); i++) {
-    node = hand2.cards[0].createNode();
-    document.getElementById("hq-2").appendChild(node);
-    node = hand2.cards[1].createNode();
-    document.getElementById("pillar1-2").appendChild(node);
-    node = hand2.cards[2].createNode();
-    document.getElementById("pillar2-2").appendChild(node);
   }
 
   left = 0;
@@ -403,17 +400,23 @@ function shuffle_deck(deck_number) {
   deck_number.shuffle(1);
 }
 
-function initial_deal(deck_number, hand_number) {
+function initial_deal(deck_number, hand_number, hq, pillar1, pillar2) {
   var i;
 
   if (deck_number == null) return;
 
-  discard();
-  for (i = 0; i < 3; i++)
+  for (i = 0; i < 3; i++) {
     hand_number.addCard(deck_number.deal());
+  }
+
+  node = hand_number.cards[0].createNode();
+  document.getElementById(hq).appendChild(node);
+  node = hand_number.cards[1].createNode();
+  document.getElementById(pillar1).appendChild(node);
+  node = hand_number.cards[2].createNode();
+  document.getElementById(pillar2).appendChild(node);
 
   deal_counter++;
-  display();
 }
 
 function highlight_selectible() {
@@ -733,8 +736,8 @@ function update_loop() {
     shuffle_deck(deck);
     shuffle_deck(deck2);
 
-    initial_deal(deck, hand);
-    initial_deal(deck2, hand2);
+    initial_deal(deck, hand, "hq", "pillar1", "pillar2");
+    initial_deal(deck2, hand2, "hq-2", "pillar1-2", "pillar2-2");
   }
 
   if(deal_counter5 % 2 == 1) {
@@ -761,7 +764,7 @@ setInterval(update_loop, 500);
 </head>
 <body>
 
-<p><a onclick="deal();">Sacrifice</a></p>
+<p><a onclick="deal1();">Sacrifice</a></p>
 
 <div id="deck"     class="cardArea"></div>
 <div id="hand"     class="cardArea" style="width:10em;"></div>
