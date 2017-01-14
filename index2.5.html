@@ -143,17 +143,30 @@ function deal1() {
 
   var i;
 
-  hand_card_count = hand.cardCount();
+  var hand_number;
+  var deck_number;
 
-  if (deck == null) return;
+  if(deal_counter5 % 2 == 1) {
+    hand_number = hand;
+    deck_number = deck;
+  }
+  else {
+    hand_number = hand2;
+    deck_number = deck2;
+  }
 
-  if (deck.cardCount() < 1)
+  hand_card_count = hand_number.cardCount();
+
+  if (deck_number == null) return;
+
+  if (deck_number.cardCount() < 1)
     alert("Not enough cards. You lose!");
 
   for (i = 0; i < 5; i++)
-    hand.addCard(deck.deal());
+    hand_number.addCard(deck_number.deal());
 
   display();
+  sacrifice_counter = 1;
 }
 
 function deal6(clicked_id) {
@@ -175,7 +188,6 @@ function deal6(clicked_id) {
   el = document.getElementById(clicked_id);
   // while (el.firstChild != null)
   //  el.removeChild(el.firstChild);
-  console.log(hand_number.cardCount()-1);
   node = hand_number.cards[hand_number.cardCount()-1].createNode();
   node.style.left = left + "em";
   node.style.top  = top  + "em";
@@ -316,7 +328,7 @@ function display(clicked_id) {
   el = document.getElementById("hand2");
   while (el.firstChild != null)
     el.removeChild(el.firstChild);
-  for (i = 3; i < hand2.cardCount(); i++) {
+  for (i = hand_card_count; i < hand2.cardCount(); i++) {
     node = hand2.cards[i].createNode();
     node.style.left = left + "em";
     node.style.top  = top  + "em";
@@ -520,11 +532,8 @@ function draw_card(element_id) {
 
 function process_move() {
   document.getElementById("hq").onclick = function() {
-    if(document.getElementById("hq").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq").getAttribute("style") != "") {
+    if(document.getElementById("hq").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq").getAttribute("style") != "") 
       draw_card(this.id);
-      var index_array_length = this.getElementsByClassName("index").length;
-      hq_card_array.push(this.getElementsByClassName("index")[index_array_length-1].innerHTML[0]);
-    }
   }
 
   document.getElementById("pillar1").onclick = function() {
@@ -734,31 +743,191 @@ function process_move2() {
   }
 }
 
+function remove_card(element_id) {
+  document.getElementById(element_id).lastChild.remove();
+  if(document.getElementById(element_id).lastChild == null) {
+    var outer_div = document.createElement("div");
+    var inner_div = document.createElement("div");
+    var text = document.createTextNode("0");
+    inner_div.appendChild(text);
+    outer_div.appendChild(inner_div);
+    inner_div.setAttribute("class", "index");
+    outer_div.setAttribute("class", "work_around");
+    document.getElementById(element_id).appendChild(outer_div);
+  }
+  sacrifice_counter = 0;
+  deal_counter5++;
+}
+
+function sacrifice() {
+  console.log("In Sacrifice");
+  document.getElementById("hq").onclick = function() {
+    if(document.getElementById("hq").lastChild.innerHTML.indexOf("front red") != -1) 
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar1").onclick = function() {
+    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar2").onclick = function() {
+    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("left").onclick = function() {
+    if(document.getElementById("left").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("center").onclick = function() {
+    if(document.getElementById("center").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("right").onclick = function() {
+    if(document.getElementById("right").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("left-2").onclick = function() {
+    if(document.getElementById("left-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("right-2").onclick = function() {
+    if(document.getElementById("right-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("center-2").onclick = function() {
+    if(document.getElementById("center-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar1-2").onclick = function() {
+    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar2-2").onclick = function() {
+    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("hq-2").onclick = function() {
+    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf("front red") != -1)
+      remove_card(this.id);
+  }
+}
+
+function sacrifice2() {
+  console.log("In Sacrifice2");
+  document.getElementById("hq").onclick = function() {
+    if(document.getElementById("hq").lastChild.innerHTML.indexOf('class="front">') != -1) 
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar1").onclick = function() {
+    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar2").onclick = function() {
+    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("left").onclick = function() {
+    if(document.getElementById("left").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("center").onclick = function() {
+    if(document.getElementById("center").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("right").onclick = function() {
+    if(document.getElementById("right").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("left-2").onclick = function() {
+    if(document.getElementById("left-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("right-2").onclick = function() {
+    if(document.getElementById("right-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("center-2").onclick = function() {
+    if(document.getElementById("center-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar1-2").onclick = function() {
+    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("pillar2-2").onclick = function() {
+    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+
+  document.getElementById("hq-2").onclick = function() {
+    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf('class="front">') != -1)
+      remove_card(this.id);
+  }
+}
+
+function victory_check() {
+  if(document.getElementById("hq").lastChild.innerHTML.indexOf('class="front">') != -1)
+    alert("Black Wins!");
+
+  if(document.getElementById("hq-2").lastChild.innerHTML.indexOf("front red") != -1)
+    alert("Red Wins!");
+}
 
 function update_loop() {
   
-  if(deal_counter < 1) {
-    shuffle_deck(deck);
-    shuffle_deck(deck2);
+  console.log("Deal Counter" + deal_counter5);
+  if(sacrifice_counter == 0) {
+    if(deal_counter < 1) {
+      shuffle_deck(deck);
+      shuffle_deck(deck2);
 
-    initial_deal(deck, hand, "hq", "pillar1", "pillar2");
-    initial_deal(deck2, hand2, "hq-2", "pillar1-2", "pillar2-2");
+      initial_deal(deck, hand, "hq", "pillar1", "pillar2");
+      initial_deal(deck2, hand2, "hq-2", "pillar1-2", "pillar2-2");
+    }
+
+    if(deal_counter5 % 2 == 1) {
+      highlight_selectible();
+      process_move();
+
+    }
+    else {
+      highlight_selectible2();
+      process_move2();
+    }
   }
-
-  if(deal_counter5 % 2 == 1) {
-    highlight_selectible();
-    process_move();
-
+  else if(deal_counter5 % 2 == 1) {
+    sacrifice2();
   }
   else {
-    highlight_selectible2();
-    process_move2();
+    sacrifice();
   }
 
+  victory_check();
 }
 
 var hq_card_array = [];
 var hand_card_count;
+var sacrifice_counter = 0;
 
 setInterval(update_loop, 500);
 
