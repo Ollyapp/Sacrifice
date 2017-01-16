@@ -35,6 +35,7 @@ h3 {
 }
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="cards.js"></script>
 <script type="text/javascript">//<![CDATA[
 
@@ -460,7 +461,7 @@ function highlight_selectible() {
   var pillar2_2 = document.getElementById("pillar2-2");
   var hq2 = document.getElementById("hq-2");
 
-  var highlight = "border: 3px solid green";
+  var highlight = "border: 3px solid green;";
 
   hq.style = "";
 
@@ -542,64 +543,71 @@ function draw_card(element_id) {
   remove_blank_divs(element_id);
 }
 
+function process_move3() {
+  $("#hq").on("click", function() {
+    if($("#hq div:last-child").html().indexOf("front red") != -1 || $("#hq").attr("style") != "")
+      draw_card(this.id);
+  });
+}
+
 function process_move() {
   document.getElementById("hq").onclick = function() {
-    if(document.getElementById("hq").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq").getAttribute("style") != " ") 
+    if(document.getElementById("hq").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq").getAttribute("style") == "border: 3px solid green;") 
       draw_card(this.id);
   }
 
   document.getElementById("pillar1").onclick = function() {
-    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar1").getAttribute("style") != " ")
+    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar1").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar2").onclick = function() {
-    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar2").getAttribute("style") != null)
+    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("left").onclick = function() {
-    if(document.getElementById("left").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("left").getAttribute("style") != null)
+    if(document.getElementById("left").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("left").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("center").onclick = function() {
-    if(document.getElementById("center").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("center").getAttribute("style") != null)
+    if(document.getElementById("center").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("center").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("right").onclick = function() {
-    if(document.getElementById("right").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("right").getAttribute("style") != null)
+    if(document.getElementById("right").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("right").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("left-2").onclick = function() {
-    if(document.getElementById("left-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("left-2").getAttribute("style") != null)
+    if(document.getElementById("left-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("left-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("right-2").onclick = function() {
-    if(document.getElementById("right-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("right-2").getAttribute("style") != null)
+    if(document.getElementById("right-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("right-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("center-2").onclick = function() {
-    if(document.getElementById("center-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("center-2").getAttribute("style") != null)
+    if(document.getElementById("center-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("center-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar1-2").onclick = function() {
-    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar1-2").getAttribute("style") != null)
+    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar1-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar2-2").onclick = function() {
-    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar2-2").getAttribute("style") != null)
+    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("pillar2-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 
   document.getElementById("hq-2").onclick = function() {
-    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq-2").getAttribute("style") != null)
+    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf("front red") != -1 || document.getElementById("hq-2").getAttribute("style") == "border: 3px solid green;")
       draw_card(this.id);
   }
 }
@@ -621,7 +629,7 @@ function highlight_selectible2() {
   var pillar2_2 = document.getElementById("pillar2-2");
   var hq2 = document.getElementById("hq-2");
 
-  var highlight = "border: 3px solid red";
+  var highlight = "border: 3px solid red;";
 
   // Hq
   hq2.style = "";
@@ -695,62 +703,62 @@ function highlight_selectible2() {
 
 function process_move2() {
   document.getElementById("hq-2").onclick = function() {
-    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("hq-2").getAttribute("style") != "")
+    if(document.getElementById("hq-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("hq-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar1-2").onclick = function() {
-    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar1-2").getAttribute("style") != "")
+    if(document.getElementById("pillar1-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar1-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar2-2").onclick = function() {
-    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar2-2").getAttribute("style") != "")
+    if(document.getElementById("pillar2-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar2-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("left-2").onclick = function() {
-    if(document.getElementById("left-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("left-2").getAttribute("style") != "")
+    if(document.getElementById("left-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("left-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("center-2").onclick = function() {
-    if(document.getElementById("center-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("center-2").getAttribute("style") != "")
+    if(document.getElementById("center-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("center-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("right-2").onclick = function() {
-    if(document.getElementById("right-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("right-2").getAttribute("style") != "")
+    if(document.getElementById("right-2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("right-2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("left").onclick = function() {
-    if(document.getElementById("left").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("left").getAttribute("style") != "")
+    if(document.getElementById("left").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("left").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("center").onclick = function() {
-    if(document.getElementById("center").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("center").getAttribute("style") != "")
+    if(document.getElementById("center").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("center").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("right").onclick = function() {
-    if(document.getElementById("right").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("right").getAttribute("style") != "")
+    if(document.getElementById("right").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("right").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar1").onclick = function() {
-    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar1").getAttribute("style") != "")
+    if(document.getElementById("pillar1").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar1").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("pillar2").onclick = function() {
-    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar2").getAttribute("style") != "")
+    if(document.getElementById("pillar2").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("pillar2").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 
   document.getElementById("hq").onclick = function() {
-    if(document.getElementById("hq").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("hq").getAttribute("style") != "")
+    if(document.getElementById("hq").lastChild.innerHTML.indexOf('class="front">') != -1 || document.getElementById("hq").getAttribute("style") == "border: 3px solid red;")
       draw_card(this.id);
   }
 }
