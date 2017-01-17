@@ -1,0 +1,5 @@
+			SACRIFICE
+
+Sacrifice is a 2 player game where the objective is to take your opponents hq before they take yours. Each player starts with a deck of 26 cards at their disposal and 3 cards from that deck are chosen at random to defend the players Hq. Higher ranked cards defeat lower ranked cards and each player takes turns to either bolster existing defenses or attack an opponent owned square. 
+
+A player can only draw a card onto a square that he already owns (the card that is face-up on the square is his), or a square that is adjacent to the one that he owns. There are 3 channels to get to the opponents HQ and the player may sacrifice 5 of his own cards to destroy one of his opponents; when doing this he forfeits his turn. The winner is the person that takes his opponents HQ before losing his.
